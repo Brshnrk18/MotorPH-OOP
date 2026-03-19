@@ -69,9 +69,4 @@ src
   - `FullTimeStaff`
   - `PartTimeStaff`
 - Updated `PayrollProcessor` to:
-
-```java
-for(Employee emp : staffList) {
-    double pay = emp.computeNetPay();
-    System.out.println(emp.getName() + " Net Pay: " + pay);
 }
