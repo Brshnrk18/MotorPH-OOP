@@ -4,35 +4,41 @@ public class Employee {
 
     private String name;
     private int id;
+    private double hourlyRate;
+    private double hoursWorked;
 
-    public Employee(String name, int id){
+    public Employee(String name, int id) {
         this.name = name;
         this.id = id;
     }
 
-    public String getName(){
-        return name;
+    public String getName() { return name; }
+    public int getId() { return id; }
+
+    public void setHourlyRate(double rate) {
+        if(rate > 0) this.hourlyRate = rate;
     }
 
-    public int getId(){
-        return id;
+    public void setHoursWorked(double hours) {
+        if(hours >= 0) this.hoursWorked = hours;
     }
-public double computeNetPay() {
-    double gross = computeGross(); // get gross pay
 
-    // create deduction objects
-    SSS sss = new SSS();
-    PhilHealth phil = new PhilHealth();
-    PagIBIG pag = new PagIBIG();
+    public double computeGross() {
+        return hourlyRate * hoursWorked;
+    }
 
-    // calculate each deduction
-    double sssAmount = sss.calculate(gross);
-    double philAmount = phil.calculate(gross);
-    double pagAmount = pag.calculate(gross);
+    public double computeNetPay() {
+        double gross = computeGross();
 
-    // subtract deductions from gross
-    double netPay = gross - (sssAmount + philAmount + pagAmount);
+        SSS sss = new SSS();
+        PhilHealth phil = new PhilHealth();
+        PagIBIG pag = new PagIBIG();
 
-    return netPay;
-}
+        double totalDeduction =
+            sss.calculate(gross) +
+            phil.calculate(gross) +
+            pag.calculate(gross);
+
+        return gross - totalDeduction;
+    }
 }
