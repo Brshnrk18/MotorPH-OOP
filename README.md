@@ -15,6 +15,9 @@ src
  │    ├── FullTimeStaff.java  
  │    ├── PartTimeStaff.java  
  │    ├── Deduction.java  
+ │    ├── SSS.java
+ │    ├── PhilHealth.java
+ │    └── PagIBIG.java
  ├── logic  
  │    └── PayrollProcessor.java  
  └── Main.java  
