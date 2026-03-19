@@ -1,30 +1,24 @@
-import model.Employee;
-import model.FullTimeStaff;
-import model.PartTimeStaff;
+import model.*;
 import logic.PayrollProcessor;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args){
 
-        // Create employees
         Employee emp1 = new Employee("Alice",1001);
         emp1.setHourlyRate(200);
         emp1.setHoursWorked(8);
 
         FullTimeStaff emp2 = new FullTimeStaff("Bob",1002,30000);
 
-        PartTimeStaff emp3 = new PartTimeStaff("Charlie",1003,150);
+        PartTimeStaff emp3 = new PartTimeStaff("Charlie",1003,150,10);
 
-        // Add them to a list
-        List<Employee> allStaff = new ArrayList<>();
-        allStaff.add(emp1);
-        allStaff.add(emp2);
-        allStaff.add(emp3);
+        List<Employee> list = new ArrayList<>();
+        list.add(emp1);
+        list.add(emp2);
+        list.add(emp3);
 
-        // Run payroll
-        PayrollProcessor processor = new PayrollProcessor();
-        processor.runPayroll(allStaff);
+        PayrollProcessor p = new PayrollProcessor();
+        p.runPayroll(list);
     }
 }
