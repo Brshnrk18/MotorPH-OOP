@@ -1,24 +1,18 @@
 import model.*;
-import logic.PayrollProcessor;
+import logic.*;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args){
-
-        Employee emp1 = new Employee("Alice",1001);
-        emp1.setHourlyRate(200);
-        emp1.setHoursWorked(8);
-
-        FullTimeStaff emp2 = new FullTimeStaff("Bob",1002,30000);
-
-        PartTimeStaff emp3 = new PartTimeStaff("Charlie",1003,150,10);
+    public static void main(String[] args) {
+        // Test Cases
+        Employee emp1 = new FullTimeStaff("Broose", 1001, 25000);
+        Employee emp2 = new PartTimeStaff("Alice", 1002, 500, 40);
 
         List<Employee> list = new ArrayList<>();
         list.add(emp1);
         list.add(emp2);
-        list.add(emp3);
 
-        PayrollProcessor p = new PayrollProcessor();
-        p.runPayroll(list);
+        PayrollProcessor processor = new PayrollProcessor();
+        processor.runPayroll(list);
     }
 }
