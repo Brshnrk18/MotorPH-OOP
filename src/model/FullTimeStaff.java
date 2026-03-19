@@ -1,25 +1,21 @@
 package model;
 
 public class FullTimeStaff extends Employee {
-
-    private double salary;
+    private double monthlySalary;
 
     public FullTimeStaff(String name, int id, double salary) {
         super(name, id);
-        this.salary = salary;
+        this.monthlySalary = salary;
     }
 
+    @Override
     public double computeNetPay() {
-        double gross = salary + 500;
-
+        double gross = monthlySalary + 500; // Fixed allowance
         SSS sss = new SSS();
         PhilHealth phil = new PhilHealth();
         PagIBIG pag = new PagIBIG();
 
-        double total = sss.calculate(gross)
-                     + phil.calculate(gross)
-                     + pag.calculate(gross);
-
-        return gross - total;
+        double deductions = sss.calculate(gross) + phil.calculate(gross) + pag.calculate(gross);
+        return gross - deductions;
     }
 }
