@@ -17,7 +17,6 @@ public class Employee {
     public int getId(){
         return id;
     }
-    // Step 11: computeNetPay
 public double computeNetPay() {
     double gross = computeGross(); // get gross pay
 
