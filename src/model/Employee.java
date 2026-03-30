@@ -1,8 +1,8 @@
 package model;
 
 public class Employee {
-    private String name;
-    private int id;
+    private final String name;
+    private final int id;
     private double hourlyRate;
     private double hoursWorked;
 
@@ -11,22 +11,30 @@ public class Employee {
         this.id = id;
     }
 
-    public String getName() { return name; }
-    public void setHourlyRate(double rate) { this.hourlyRate = rate; }
-    public void setHoursWorked(double hours) { this.hoursWorked = hours; }
-
     public double computeGross() {
         return hourlyRate * hoursWorked;
     }
 
+    public double calculateSSS() {
+        return new SSS().calculate(computeGross());
+    }
+
+    public double calculatePhilHealth() {
+        return new PhilHealth().calculate(computeGross());
+    }
+
+    public double calculatePagIBIG() {
+        return new PagIBIG().calculate(computeGross());
+    }
+
     public double computeNetPay() {
         double gross = computeGross();
-        // Initializing deduction objects from the same package
-        SSS sss = new SSS();
-        PhilHealth phil = new PhilHealth();
-        PagIBIG pag = new PagIBIG();
-
-        double totalDeductions = sss.calculate(gross) + phil.calculate(gross) + pag.calculate(gross);
-        return gross - totalDeductions;
+        double deductions = calculateSSS() + calculatePhilHealth() + calculatePagIBIG();
+        return gross - deductions;
     }
+
+    public String getName() { return name; }
+    public int getId() { return id; }
+    public void setHourlyRate(double rate) { this.hourlyRate = rate; }
+    public void setHoursWorked(double hours) { this.hoursWorked = hours; }
 }
