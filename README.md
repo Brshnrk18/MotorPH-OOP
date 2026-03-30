@@ -1,75 +1,48 @@
-# MotorPH Payroll System (OOP Refactoring)
+# MotorPH Payroll System (OOP Refactor)
+**Author:** Broose Henrik Membreve  
+**Project:** Milestone 2 - Object-Oriented Implementation  
+**Status:** Completed & QA Verified ✅
 
-## Overview
-This project is a refactored version of the MotorPH Payroll System. The original procedural (CP2) logic was converted into an Object-Oriented Programming (OOP) design using Java.
+## 🚀 Project Overview
+This project is a complete refactoring of the MotorPH Payroll System. Moving away from the procedural logic of CP1, this version implements a strictly decoupled, **Object-Oriented Architecture** designed for scalability and maintainability.
 
-The goal is to create a cleaner, more scalable, and maintainable payroll system using OOP principles such as Encapsulation, Abstraction, Inheritance, and Polymorphism.
-
----
-
-## Project Structure
-
-src  
- ├── model  
- │    ├── Employee.java  
- │    ├── FullTimeStaff.java  
- │    ├── PartTimeStaff.java  
- │    ├── Deduction.java  
- │    ├── SSS.java
- │    ├── PhilHealth.java
- │    └── PagIBIG.java
- ├── logic  
- │    └── PayrollProcessor.java  
- └── Main.java  
+The system calculates gross pay, government deductions (SSS, PhilHealth, Pag-IBIG), and final net pay through a dedicated logic processor, ensuring that the User Interface remains independent of the business rules.
 
 ---
 
-## Step-by-Step Implementation
+## 🏗️ Architecture & OOP Design
+The project is organized into three distinct packages to ensure **Separation of Concerns**:
 
-### Step 1–3: Employee Class
-- Created `Employee` as the parent class
-- Added shared attributes: name, id, hourlyRate, hoursWorked
-- Implemented `computeGross()` for basic salary calculation
+### 1. Model Layer (`model`)
+- **Encapsulation:** All employee data is protected within the `Employee` parent class.
+- **Inheritance:** Specialized logic for `FullTimeStaff` (monthly + allowance) and `PartTimeStaff` (hourly) extends the base class.
+- **Deduction Strategy:** SSS, PhilHealth, and Pag-IBIG calculations are moved to independent classes to prevent code bloating.
 
----
+### 2. Logic Layer (`logic`)
+- **The Processor:** Acts as the "Engine." It orchestrates the computation sequence without being tied to a specific UI.
+- **Decoupling:** The `PayrollProcessor` accepts an `Employee` object and returns results, allowing the GUI to remain "thin."
 
-### Step 4–7: Subclasses
-- Created `FullTimeStaff` for fixed salary employees
-- Created `PartTimeStaff` for hourly employees
-- Used inheritance to avoid repeating code
-
----
-
-### Step 8–9: PayrollProcessor
-- Created `PayrollProcessor` class
-- Added a loop to process all employees
-- Initially used `instanceof` to calculate pay
+### 3. View Layer (`main` & `logic.GUI`)
+- **Clean Interface:** The GUI handles only user input and data display.
+- **Polymorphism:** The system dynamically instantiates the correct subclass based on user input, demonstrating runtime method binding.
 
 ---
 
-### Step 10: Deduction System
-- Created abstract class `Deduction`
-- Added abstract method `calculate()`
-- Created subclasses:
-  - `SSS`
-  - `PhilHealth`
-  - `PagIBIG`
-- Each class has its own formula
+## 🧪 Testing & Quality Assurance
+This version has undergone three phases of rigorous testing:
+1. **Internal Smoke Test:** Verified the GUI-to-Backend connection.
+2. **Console Trace Debugging:** Monitored variable states and deduction formulas in real-time.
+3. **External QA:** Validated by an external tester to ensure edge-case stability (e.g., non-numeric inputs and zero-hour scenarios).
 
 ---
 
-### Step 11: computeNetPay()
-- Added `computeNetPay()` in `Employee`
-- This method:
-  - Computes gross pay
-  - Applies all deductions
-  - Returns final net pay
+## 🛠️ How to Run
+1. Clone this repository.
+2. Open the project in **NetBeans IDE**.
+3. Locate `src/main/Main.java`.
+4. Right-click and select **Run File**.
 
 ---
 
-### Step 12: Polymorphism (Final Refactor)
-- Overrode `computeNetPay()` in:
-  - `FullTimeStaff`
-  - `PartTimeStaff`
-- Updated `PayrollProcessor` to:
-}
+## 📝 Final Reflections
+By refactoring this system, I have moved from "writing scripts" to "building systems." The use of Polymorphism significantly reduced the need for complex `if-else` chains, making the code cleaner and easier to debug during the Week 11-12 QA cycle.
