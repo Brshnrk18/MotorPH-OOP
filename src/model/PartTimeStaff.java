@@ -6,5 +6,4 @@ public class PartTimeStaff extends Employee {
         setHourlyRate(rate);
         setHoursWorked(hours);
     }
-    // Uses the parent's computeNetPay logic
 }
